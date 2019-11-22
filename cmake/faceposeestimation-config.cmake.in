@@ -1,0 +1,54 @@
+# FacePoseEstimation CMake config file
+#
+# This file sets the following variables:
+# FacePoseEstimation_FOUND - Always TRUE.
+# FacePoseEstimation_INCLUDE_DIRS - Directories containing the FacePoseEstimation include files.
+# FacePoseEstimation_IDL_DIRS - Directories containing the FacePoseEstimation IDL files.
+# FacePoseEstimation_LIBRARIES - Libraries needed to use FacePoseEstimation.
+# FacePoseEstimation_DEFINITIONS - Compiler flags for FacePoseEstimation.
+# FacePoseEstimation_VERSION - The version of FacePoseEstimation found.
+# FacePoseEstimation_VERSION_MAJOR - The major version of FacePoseEstimation found.
+# FacePoseEstimation_VERSION_MINOR - The minor version of FacePoseEstimation found.
+# FacePoseEstimation_VERSION_REVISION - The revision version of FacePoseEstimation found.
+# FacePoseEstimation_VERSION_CANDIDATE - The candidate version of FacePoseEstimation found.
+
+message(STATUS "Found FacePoseEstimation-@PROJECT_VERSION@")
+set(FacePoseEstimation_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(FacePoseEstimation_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(FacePoseEstimation_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(FacePoseEstimation_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(FacePoseEstimation_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(FacePoseEstimation_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(FacePoseEstimation_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(FacePoseEstimation_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(FacePoseEstimation_VERSION @PROJECT_VERSION@)
+set(FacePoseEstimation_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(FacePoseEstimation_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(FacePoseEstimation_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(FacePoseEstimation_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
