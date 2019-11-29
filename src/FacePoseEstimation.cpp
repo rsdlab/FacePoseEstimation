@@ -145,7 +145,7 @@ RTC::ReturnCode_t FacePoseEstimation::onExecute(RTC::UniqueId ec_id)
       
       // 輝度画像に変換
       
-      cv::cvtColor(image, grayImage, CV_RGB2GRAY);
+      cv::cvtColor(image, grayImage, cv::COLOR_RGB2GRAY);
       
       // 学習済み検出器の読み込み
       
@@ -161,7 +161,7 @@ RTC::ReturnCode_t FacePoseEstimation::onExecute(RTC::UniqueId ec_id)
 			       faces,       // 出力される矩形
 			       1.1,         // 縮小用のスケール
 			       2,           // 最小の投票数
-			       CV_HAAR_SCALE_IMAGE,  // フラグ
+			       2,  // フラグ
 			       cv::Size(30, 30) // 最小の矩形
 			       );
       //facedata =  cascade.detectMultiScale(grayImage,faces,1.1,2,CV_HAAR_SCALE_IMAGE,cv::Size(30, 30))
